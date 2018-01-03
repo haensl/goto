@@ -1,0 +1,17 @@
+_goto() {
+  local cur prev path directories
+  COMPREPLY=()
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  prev="${COMP_WORDS[COMP_CWORD-1]}"
+  # set your project folder here
+  path=${HOME}/code/
+  
+  if [ -n "$prev"  ] && [ "$prev" != "goto" ]; then
+    path="${path}${prev}/"
+  fi
+
+  directories=$(find "${path}" -maxdepth 1 -type d -name "${cur}*" -printf "%f\n")
+  COMPREPLY=( $(compgen -W "${directories}" -- ${cur}) )
+  return 0
+}
+complete -F _goto goto
