@@ -8,7 +8,18 @@ Bash completion for fast project navigation.
   git clone https://github.com/haensl/goto.git
   ```
 
-2. Link `goto` to bash completion
+2. Adjust project path
+
+      Open the [`goto`](goto) file in your favorite editor and adjust the `path` variable to point to the location where you store your projects in line 7. Mine live at `~/code/`
+  ```bash
+    $ vim goto
+  ```
+  ```bash
+    #[...]
+    path=${HOME}/code/ #adjust this line
+  ```
+
+3. Link `goto` to bash completion
   ```bash
   # create the directory if it does not exist
   # mkdir /etc/bash_completion.d
@@ -17,14 +28,14 @@ Bash completion for fast project navigation.
 
 ## Usage
 
-* Type `goto` and the start of whatever project/folder you want to navigate to into your terminal.
+* Type `goto` and the start of whatever project/folder you want to navigate to in your terminal.
 
   E.g.
   ```
     goto gul
   ```
 
-* Hit `<tab>` for autocompletion.
+* Hit `<tab>` for autocompletion. If there are several options, this will complete the directory name as far as possible.
 
   E.g.
   ```
