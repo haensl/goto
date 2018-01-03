@@ -39,4 +39,8 @@ Bash completion for fast project navigation.
     gulp-embed-json gulp-embed-svg
   ```
 
-* Continue typing the desired project/folder name and hit enter to go there.
+* Continue typing/autocompleting the desired project/folder name and hit enter to go there.
+
+### [CHANGELOG](CHANGELOG.md)
+
+### [LICENSE](LICENSE)
