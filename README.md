@@ -8,25 +8,36 @@ Bash completion for fast project navigation.
   git clone https://github.com/haensl/goto.git
   ```
 
-2. Adjust project path
-
-      Open the [`goto`](goto) file in your favorite editor and adjust the `path` variable to point to the location where you store your projects in line 7. Mine live at `~/code/`
-  ```bash
-    $ vim goto
-  ```
-  ```bash
-    #[...]
-    path=${HOME}/code/ #adjust this line
-  ```
-
-3. Link `goto` to bash completion
+2. Link `goto` to bash completion
   ```bash
   # create the directory if it does not exist
   # mkdir /etc/bash_completion.d
   ln -s goto /etc/bash_completion.d/
   ```
 
+3. Set the `GOTOPATH` environment variable
+  ```bash
+  echo "export GOTOPATH=<path-to-your-projects>" >> ~/.bashrc
+  ```
+
+4. Add the [`goto` function](goto-func.sh) to your `.bashrc`
+  ```bash
+  cat goto-func.sh >> ~/.bashrc
+  ```
+
+
+#### Hint:
+
+You can specify multiple root folders by separating them via `:` (colons), e.g. `export GOTOPATH="${HOME}/code:${HOME}/sites"`
+
+#### For MacOS users:
+
+`goto` uses features not available to the `find` command on BSD. You can however install `findutils` via [homebrew](https://brew.sh/) in order to make it work.
+
+
 ## Usage
+
+![Intro](goto-intro.gif)
 
 * Type `goto` and the start of whatever project/folder you want to navigate to in your terminal.
 
