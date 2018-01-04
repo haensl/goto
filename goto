@@ -3,14 +3,24 @@ _goto() {
   COMPREPLY=()
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
-  # set your project folder here
-  path=${HOME}/code/
   
-  if [ -n "$prev"  ] && [ "$prev" != "goto" ]; then
-    path="${path}${prev}/"
+  if [ -z $GOTOPATH ]; then
+    local GOTOPATH=($HOME)
   fi
 
-  directories=$(find "${path}" -maxdepth 1 -type d -name "${cur}*" -printf "%f\n")
+  local projectfolders=(${GOTOPATH//:/ })
+
+  for path in "${projectfolders[@]}"
+  do
+    if [ -n "$prev"  ] && [ "$prev" != "goto" ]; then
+      path="${path}/${prev}/"
+    fi
+
+    if [ -d "${path}" ]; then
+      directories+=$(find "${path}" -maxdepth 1 -type d -name "${cur}*" -printf "%f\n")
+    fi
+  done
+
   COMPREPLY=( $(compgen -W "${directories}" -- ${cur}) )
   return 0
 }
