@@ -1,26 +1,32 @@
 # goto
 Bash completion for fast project navigation.
 
+## Prerequisites
+
+* `bash-completion`
+
 ## Installation
 
-1. Clone this project
+1. Make sure you installed all prerequisites.
+
+2. Clone this project
   ```bash
   git clone https://github.com/haensl/goto.git
   ```
 
-2. Link `goto` to bash completion
+3. Link [`goto`](goto) to bash completion
   ```bash
   # create the directory if it does not exist
   # mkdir /etc/bash_completion.d
-  ln -s goto /etc/bash_completion.d/
+  ln -s <path/to/goto/goto> /etc/bash_completion.d/
   ```
 
-3. Set the `GOTOPATH` environment variable
+4. Set the `GOTOPATH` environment variable
   ```bash
   echo "export GOTOPATH=<path-to-your-projects>" >> ~/.bashrc
   ```
 
-4. Add the [`goto` function](goto-func.sh) to your `.bashrc`
+5. Add the [`goto` function](goto-func.sh) to your `.bashrc`
   ```bash
   cat goto-func.sh >> ~/.bashrc
   ```
