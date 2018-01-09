@@ -10,11 +10,17 @@ function goto {
 
   local projectfolders=(${GOTOPATH//:/ })
   local project
+  local found=false
   for projectfolder in "${projectfolders[@]}"
   do
     project="${projectfolder}/${path}"
     if [ -d "${project}" ]; then
       cd "${project}"
+      found=true
     fi
   done
+
+  if [ "$found" = false ]; then
+    echo "Uhm...nope."
+  fi
 }
