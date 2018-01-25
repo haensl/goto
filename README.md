@@ -18,7 +18,12 @@ Bash completion for fast project navigation.
   ```bash
   # create the directory if it does not exist
   # mkdir /etc/bash_completion.d
-  ln -s <path/to/goto/goto> /etc/bash_completion.d/
+  ln -s <path/to/goto>/goto /etc/bash_completion.d/
+  ```
+
+  On OSX if you installed bash-completion via homebrew use:
+  ```bash
+  ln -s <path/to/goto>/goto $(brew --prefix)/etc/bash_completion.d/
   ```
 
 4. Set the `GOTOPATH` environment variable
@@ -28,7 +33,7 @@ Bash completion for fast project navigation.
 
 5. Add the [`goto` function](goto-func.sh) to your `.bashrc`
   ```bash
-  cat goto-func.sh >> ~/.bashrc
+  echo "source <path/to/goto>/goto-func.sh" >> ~/.bashrc
   ```
 
 
