@@ -1,5 +1,11 @@
 _goto() {
-  local cur prev path directories
+  local cur prev path directories findOpts
+  if [ "${OSTYPE}" == "linux-gnu" ]; then
+    findOpts='-printf "%f\n"'
+  else
+    findOpts='-print | sed 's!.*/!!' | sort'
+  fi
+
   COMPREPLY=()
   cur="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
@@ -17,11 +23,11 @@ _goto() {
     fi
 
     if [ -d "${path}" ]; then
-      directories+=$(find "${path}" -maxdepth 1 -type d -name "${cur}*" -printf "%f\n")
+      directories+=$( find "${path}" -maxdepth 1 -type d -name "${cur}*" ${findOpts} )
     fi
   done
 
-  COMPREPLY=( $(compgen -W "${directories}" -- ${cur}) )
+  COMPREPLY=( $( compgen -W "${directories}" -- ${cur} ) )
   return 0
 }
 complete -F _goto goto

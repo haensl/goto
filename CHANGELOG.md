@@ -1,3 +1,6 @@
+## 2.0.2
+* [#3: Fix a bug that caused the `find` command to fail on OSX.](https://github.com/haensl/goto/issues/3)
+
 ## 2.0.1
 * [#7: Package requires "bash-completion"](https://github.com/haensl/goto/issues/7)
 
