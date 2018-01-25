@@ -3,44 +3,34 @@ Bash completion for fast project navigation.
 
 ## Prerequisites
 
-* `bash-completion` 
+* `bash-completion`
 
 ## Installation
 
-1. Make sure you installed all prerequisites *(Use Homebrew on OSX)*.
+### Linux
+
+1. Make sure you installed all prerequisites.
 
 2. Clone this project
   ```bash
   git clone https://github.com/haensl/goto.git
   ```
 
-3. Link [`goto`](goto) to bash completion
+3. Let make do it's thing
   ```bash
-  # create the directory if it does not exist
-  # mkdir /etc/bash_completion.d
-  ln -s <path/to/goto>/goto /etc/bash_completion.d/
+  make install
   ```
 
-  On OSX if you installed bash-completion via Homebrew use:
+### OSX
 
+1. Tap my formulae
   ```bash
-  ln -s <path/to/goto>/goto $(brew --prefix)/etc/bash_completion.d/
+  brew tap haensl/haensl
   ```
 
-4. Set the `GOTOPATH` environment variable to point to your project folder(s)
+2. Install goto via Homebrew
   ```bash
-  echo "export GOTOPATH=<path-to-your-projects>" >> ~/.bashrc
-  ```
-
-  **Hints:**
-
-  * On OSX substitute `.bashrc` with `.bash_profile`.
-
-  * You can specify multiple project folders by separating them via `:` (colons), e.g. `export GOTOPATH="${HOME}/code:${HOME}/sites"`
-
-5. Add the [`goto` function](goto-func.sh) to your `.bashrc`/`.bash_profile`
-  ```bash
-  echo "source <path/to/goto>/goto-func.sh" >> ~/.bashrc
+  brew install goto
   ```
 
 ## Usage
