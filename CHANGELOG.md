@@ -1,3 +1,6 @@
+## 2.1.0
+* [#6: Add Makefile to automate installation and support Homebrew.](https://github.com/haensl/goto/issues/6)
+
 ## 2.0.2
 * [#3: Fix a bug that caused the `find` command to fail on OSX.](https://github.com/haensl/goto/issues/3)
 
