@@ -36,11 +36,6 @@ Bash completion for fast project navigation.
 
 You can specify multiple root folders by separating them via `:` (colons), e.g. `export GOTOPATH="${HOME}/code:${HOME}/sites"`
 
-#### For MacOS users:
-
-`goto` uses features not available to the `find` command on BSD. You can however install `findutils` via [homebrew](https://brew.sh/) in order to make it work.
-
-
 ## Usage
 
 ![Intro](goto-intro.gif)
