@@ -24,3 +24,5 @@ function goto {
     echo "Uhm...nope."
   fi
 }
+
+export -f goto

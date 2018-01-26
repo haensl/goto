@@ -1,3 +1,6 @@
+## 2.2.0
+* [#7: Refactor installation process.](https://github.com/haensl/goto/issues/12)
+
 ## 2.1.0
 * [#6: Add Makefile to automate installation and support Homebrew.](https://github.com/haensl/goto/issues/6)
 
