@@ -1,6 +1,6 @@
 _goto() {
   local cur prev path directories findOpts
-  if [ "${OSTYPE}" == "linux-gnu" ]; then
+  if [ "${OSTYPE}" == "linux-gnu" ] || grep -q gnubin <<<$(which sed); then
     findOpts='-printf "%f\n"'
   else
     findOpts='-print | sed 's!.*/!!' | sort'

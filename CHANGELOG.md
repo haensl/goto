@@ -1,3 +1,6 @@
+## 2.2.1
+* [#14: Make goto work with gnu binaries on OSX.](https://github.com/haensl/goto/issues/14)
+
 ## 2.2.0
 * [#7: Refactor installation process.](https://github.com/haensl/goto/issues/12)
 
