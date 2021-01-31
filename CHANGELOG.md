@@ -1,3 +1,6 @@
+## 2.3.0
+* [#16: Refactor Makefile.](https://github.com/haensl/goto/issues/16)
+
 ## 2.2.1
 * [#14: Make goto work with gnu binaries on OSX.](https://github.com/haensl/goto/issues/14)
 
