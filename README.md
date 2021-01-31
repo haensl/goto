@@ -7,31 +7,26 @@ Bash completion for fast project navigation.
 
 ## Installation
 
-### Linux
+1. Clone this repository
 
-1. Make sure you installed all prerequisites.
+2.  Load goto in your Bash profile (usually `~/.bashrc` on Linux and `~/.bash_profile` on MacOS)
 
-2. Clone this project
-  ```bash
-  git clone https://github.com/haensl/goto.git
-  ```
+```
+	source /path/to/goto/repository/goto
+```
 
-3. Let make do it's thing
-  ```bash
+Specify the directories that contain your projects via the `GOTOPATH` environment variable. To specify multiple directories, separate them via : (colon), e.g.:
+
+```
+  export GOTOPATH="${HOME}/code:${HOME}/sites"
+```
+
+You can view installation instructions by running
+
+```
   make install
-  ```
+```
 
-### OSX
-
-1. Tap my formulae
-  ```bash
-  brew tap haensl/haensl
-  ```
-
-2. Install goto via Homebrew
-  ```bash
-  brew install goto
-  ```
 
 ## Usage
 
