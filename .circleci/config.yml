@@ -31,4 +31,6 @@ jobs:
           command: source ~/goto/goto
       - run:
           name: test that goto command is available
-          command: command -v goto &> /dev/null
+          command:|
+            source ~/goto/goto
+            command -v goto &> /dev/null
