@@ -1,4 +1,6 @@
-_goto() {
+#!/usr/bin/env bash
+
+function goto_completion {
   local cur prev path directories findOpts
   if [ "${OSTYPE}" == "linux-gnu" ] || grep -q gnubin <<<$(which sed); then
     findOpts='-printf "%f\n"'
@@ -30,4 +32,5 @@ _goto() {
   COMPREPLY=( $( compgen -W "${directories}" -- ${cur} ) )
   return 0
 }
-complete -F _goto goto
+
+complete -F goto_completion goto

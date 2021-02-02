@@ -1,3 +1,6 @@
+## 2.4.1
+* [#22: Unify bash syntax.](https://github.com/haensl/goto/issues/22)
+
 ## 2.4.0
 * [#20: Add CI/CD.](https://github.com/haensl/goto/issues/20)
 
