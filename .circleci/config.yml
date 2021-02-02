@@ -5,7 +5,7 @@ commands:
     steps:
       - run:
           name: extract changelog version
-          working_directory: ~/minify-inline-json
+          working_directory: ~/goto
           command: |
             VERSION=$(head -n1 CHANGELOG.md | grep -o '\([0-9]\+\.\)\{2\}[0-9]\+')
             echo "export VERSION=${VERSION}" >> $BASH_ENV
@@ -47,7 +47,7 @@ jobs:
   bundle:
     docker:
       - image: cimg/base:2021.01
-    working_directory: ~/${CIRCLE_PROJECT_REPONAME}
+    working_directory: ~/goto
     steps:
       - checkout
       - run:
@@ -70,16 +70,16 @@ jobs:
   publish:
     docker:
       - image: cibuilds/github
+    working_directory: ~/goto
     steps:
       - attach_workspace:
-          at: ~/${CIRCLE_PROJECT_REPONAME}
+          at: ~/goto
       - extract-changelog-version
       - run:
           name: publish github release
-          working_directory: ~/minify-inline-json
           command: |
-            cp ./minify-inline-json.tgz ./minify-inline-json-${VERSION}.tgz
+            cp ./goto.tar.gz ./goto-${VERSION}.tar.gz
             CHANGES=$(awk "/## ${VERSION}/,/^$/" CHANGELOG.md)
             echo "Publishing release v${VERSION} to Github.\nChanges:"
             echo $CHANGES
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -n "v${VERSION}" -b "${CHANGES}" "v${VERSION}" ./minify-inline-json-${VERSION}.tgz
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -n "v${VERSION}" -b "${CHANGES}" "v${VERSION}" ./goto-${VERSION}.tar.gz
