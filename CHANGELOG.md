@@ -1,3 +1,6 @@
+## 2.3.1
+* [#18: Fix completion sourcing test.](https://github.com/haensl/goto/issues/18)
+
 ## 2.3.0
 * [#16: Refactor Makefile.](https://github.com/haensl/goto/issues/16)
 
