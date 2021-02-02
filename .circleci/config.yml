@@ -1,0 +1,30 @@
+# https://circleci.com/docs/2.1/language-javascript/
+version: 2.1
+commands:
+  extract-changelog-version:
+    steps:
+      - run:
+          name: extract changelog version
+          working_directory: ~/minify-inline-json
+          command: |
+            VERSION=$(head -n1 CHANGELOG.md | grep -o '\([0-9]\+\.\)\{2\}[0-9]\+')
+            echo "export VERSION=${VERSION}" >> $BASH_ENV
+            echo "export CHANGELOG_VERSION=${VERSION}" >> $BASH_ENV
+            echo "changelog version: ${VERSION}"
+
+workflows:
+  default:
+    when: always
+    jobs:
+      - test
+
+jobs:
+  test:
+    docker:
+      - image: cimg/base
+    working_directory: ~
+    steps:
+      - checkout
+      - run:
+        name: source goto
+        command: source ~/goto/goto

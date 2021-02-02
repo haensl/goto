@@ -1,5 +1,8 @@
 # goto
+
 Bash completion for fast project navigation.
+
+[![CircleCI](https://circleci.com/gh/haensl/goto.svg?style=svg)](https://circleci.com/gh/haensl/goto)
 
 ## Prerequisites
 
