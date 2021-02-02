@@ -1,3 +1,6 @@
+## 2.4.0
+* [#20: Add CI/CD.](https://github.com/haensl/goto/issues/20)
+
 ## 2.3.1
 * [#18: Fix completion sourcing test.](https://github.com/haensl/goto/issues/18)
 

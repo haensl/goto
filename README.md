@@ -1,18 +1,23 @@
-# goto
+# goto [![CircleCI](https://circleci.com/gh/haensl/goto.svg?style=svg)](https://circleci.com/gh/haensl/goto)
+
 Bash completion for fast project navigation.
 
 ## Prerequisites
 
-* `bash-completion`
+* `bash`: goto is written for bash (and compatible) shells.
+* `bash-completion`: ensure that your shell has completion available. You can check by running:
+  ```shell
+  (command -v complete &> /dev/null && echo 'You have bash completion.') || echo 'You do not have bash completion'
+  ```
 
 ## Installation
 
-1. Clone this repository
+1. Get a hold of goto. You can either clone this repository or [download the latest release](https://github.com/haensl/goto/releases).
 
 2.  Load goto in your Bash profile (usually `~/.bashrc` on Linux and `~/.bash_profile` on MacOS)
 
 ```
-	source /path/to/goto/repository/goto
+	source /path/to/goto/goto
 ```
 
 Specify the directories that contain your projects via the `GOTOPATH` environment variable. To specify multiple directories, separate them via : (colon), e.g.:

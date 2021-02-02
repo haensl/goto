@@ -1,0 +1,91 @@
+# https://circleci.com/docs/2.1/language-javascript/
+version: 2.1
+commands:
+  extract-changelog-version:
+    steps:
+      - run:
+          name: extract changelog version
+          working_directory: ~/goto
+          command: |
+            VERSION=$(head -n1 CHANGELOG.md | grep -o '\([0-9]\+\.\)\{2\}[0-9]\+')
+            echo "export VERSION=${VERSION}" >> $BASH_ENV
+            echo "export CHANGELOG_VERSION=${VERSION}" >> $BASH_ENV
+            echo "changelog version: ${VERSION}"
+
+workflows:
+  default:
+    when: always
+    jobs:
+      - test
+      - bundle:
+          requires:
+            - test
+      - publish:
+          requires:
+            - bundle
+          filters:
+            branches:
+              only: master
+
+jobs:
+  test:
+    docker:
+      - image: cimg/base:2021.01
+    working_directory: ~
+    steps:
+      - checkout:
+          path: ~/goto
+      - run:
+          name: source goto
+          command: source ~/goto/goto
+      - run:
+          name: test that goto command is available
+          command: |
+            source ~/goto/goto
+            command -v goto &> /dev/null
+      - run:
+          name: test that goto changes into directory
+          command: |
+            source ~/goto/goto
+            goto goto
+            [ $(pwd) == "${HOME}/goto" ]
+
+  bundle:
+    docker:
+      - image: cimg/base:2021.01
+    working_directory: ~/goto
+    steps:
+      - checkout
+      - run:
+          name: bundle goto
+          command: |
+            tar -czvf goto.tar.gz LICENSE README.md goto goto.completion CHANGELOG.md Makefile
+      - store_artifacts:
+          path: goto.tar.gz
+      - persist_to_workspace:
+          root: ./
+          paths:
+            CHANGELOG.md
+            REAME.md
+            LICENSE
+            goto.tar.gz
+            goto
+            goto.completion
+            Makefile
+
+  publish:
+    docker:
+      - image: cibuilds/github
+    working_directory: ~/goto
+    steps:
+      - attach_workspace:
+          at: ~/goto
+      - extract-changelog-version
+      - run:
+          name: publish github release
+          command: |
+            cp ./goto.tar.gz ./goto-${VERSION}.tar.gz
+            CHANGES=$(awk "/## ${VERSION}/,/^$/" CHANGELOG.md)
+            echo "Publishing release v${VERSION} to Github.\nChanges:"
+            echo $CHANGES
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -n "v${VERSION}" -b "${CHANGES}" "v${VERSION}" ./goto-${VERSION}.tar.gz
