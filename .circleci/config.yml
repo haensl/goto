@@ -34,3 +34,9 @@ jobs:
           command: |
             source ~/goto/goto
             command -v goto &> /dev/null
+      - run:
+          name: test that goto changes into directory
+          command: |
+            source ~/goto/goto
+            goto goto
+            [ $(pwd) == "${HOME}/goto" ]
