@@ -26,8 +26,8 @@ function goto {
   fi
 }
 
+export -f goto
+
 if [ command -v complete &> /dev/null ]; then
   source "$(pwd)/goto.completion"
 fi
-
-export -f goto
