@@ -25,6 +25,7 @@ jobs:
     working_directory: ~
     steps:
       - checkout
+          path: ~/goto
       - run:
           name: source goto
           command: source ~/goto/goto
