@@ -24,7 +24,7 @@ jobs:
       - image: cimg/base:2021.01
     working_directory: ~
     steps:
-      - checkout
+      - checkout:
           path: ~/goto
       - run:
           name: source goto
