@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 function goto {
   local path=$1
   if [ -n "${2}" ]; then
@@ -25,9 +26,8 @@ function goto {
   fi
 }
 
-if command -v complete &> /dev/null
+if [ command -v complete &> /dev/null ]; then
   source "$(pwd)/goto.completion"
 fi
-
 
 export -f goto
