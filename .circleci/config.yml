@@ -20,6 +20,12 @@ workflows:
       - bundle:
           requires:
             - test
+      - publish:
+          requires:
+            - bundle
+          filters:
+            branches:
+              only: master
 
 jobs:
   test:
